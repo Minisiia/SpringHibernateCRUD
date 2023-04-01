@@ -3,14 +3,21 @@ package com.example.hibernatedemo.repositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 @Transactional
 @Repository
-public class PersonRepository{
-    @PersistenceContext
-    private EntityManager entityManager;
+public class PersonRepository {
+
+    private final EntityManager entityManager;
+
+    @Autowired
+    public PersonRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Modifying
     public void deleteByName(String name) {
