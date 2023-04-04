@@ -53,7 +53,6 @@ public class PersonDAO {
 
     public void delete(int id) {
         personRepository.delete(id);
-        ;
     }
 
     public void deletePersonByName(String name) {
